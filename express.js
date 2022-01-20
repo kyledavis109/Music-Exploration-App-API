@@ -47,6 +47,10 @@ app.get('/api/relatedArtists/:artistID', async (req, res) => {
         }
         });
         const results = await response.json();
+        if ('error' in results) {
+            const error = results.error.message
+            return res.status(400).send(error)
+        }
         return res.status(200).json(results)
     } catch(err) {
         return res.status(500).send('Server failed to fetch related related artists data.')
@@ -65,6 +69,10 @@ app.get('/api/tracks/:albumID', async (req, res) => {
             }
         });
         const results = await response.json();
+        if ('error' in results) {
+            const error = results.error.message
+            return res.status(400).send(error)
+        }
         return res.status(200).json(results)
     } catch(err) {
         return res.status(500).send('Server failed to fetch artist album tracks.')
