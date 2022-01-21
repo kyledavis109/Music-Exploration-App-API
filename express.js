@@ -5,6 +5,31 @@ const path = require('path');
 require('dotenv').config()
 const fetch = require('node-fetch');
 
+
+/* API fetch call to Spotify API endpoint to retrieve related artists of selected artist in dropdown menu
+on home page. */
+app.get('/api/relatedArtists/:artistID', async (req, res) => {
+    try{
+        const artistID = req.params.artistID
+        const url = `https://api.spotify.com/v1/artists/${artistID}/related-artists`;
+        const response = await fetch(url, { 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
+        }
+        });
+        const results = await response.json();
+        if ('error' in results) {
+            const error = results.error.message
+            return res.status(400).send(error)
+        }
+        return res.status(200).json(results)
+    } catch(err) {
+        return res.status(500).send('Server failed to fetch related related artists data.')
+    }
+})
+
+// API fetch call to Spotify API endpoint to retrieve albums of selected related artist on homepage.
 app.get('/api/albums/:artistID', async (req, res) => {
     try {
         const artistID = req.params.artistID
@@ -36,27 +61,7 @@ app.get('/api/albums/:artistID', async (req, res) => {
     };
 });
 
-app.get('/api/relatedArtists/:artistID', async (req, res) => {
-    try{
-        const artistID = req.params.artistID
-        const url = `https://api.spotify.com/v1/artists/${artistID}/related-artists`;
-        const response = await fetch(url, { 
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-        }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message
-            return res.status(400).send(error)
-        }
-        return res.status(200).json(results)
-    } catch(err) {
-        return res.status(500).send('Server failed to fetch related related artists data.')
-    }
-})
-
+// API fetch call to Spotify API endpoint to retrieve tracks of selected album on related artists albums page.
 app.get('/api/tracks/:albumID', async (req, res) => {
     try{
         const albumID = req.params.albumID
@@ -80,6 +85,6 @@ app.get('/api/tracks/:albumID', async (req, res) => {
 })
 
 // Start the server listening for requests.
-app.listen(process.env.PORT || 8000, () => {
+app.listen(process.env.PORT, () => {
     console.log('Server is running...')
 });
