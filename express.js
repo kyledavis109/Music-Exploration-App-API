@@ -5,8 +5,40 @@ const path = require('path');
 require('dotenv').config();
 const fetch = require('node-fetch');
 
-/* API fetch call to Spotify API endpoint to retrieve related artists of selected artist in dropdown menu
-on home page. */
+
+// API fetch call to Spotify API endpoint to retrieve searched artist on home page.
+app.get('/api/search', async (req, res) => {
+    try {
+        // Validate query param.
+        const searchValue = req.query.searchValue;
+        if (searchValue === null || searchValue === undefined) {
+            return res.status(400).send('searchValue is a required query.')
+        } else if (typeof searchValue !== 'string') {
+            return res.status(400).send('searchValue query must be a string.')
+        } else if (searchValue === '') {
+            return res.status(400).send('searchValue query must not be empty.')
+        }
+
+        // Make API request to Spotify.
+        const url = `https://api.spotify.com/v1/search?q=artist:${searchValue}&type=artist`;
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
+            }
+        });
+        const results = await response.json();
+        if ('error' in results) {
+            const error = results.error.message;
+            return res.status(400).send(error)
+        }
+        return res.status(200).json(results.artists.items);
+    } catch(err) {
+        return res.status(500).send('Server failed to search for artists.');
+    }
+})
+
+// API fetch call to Spotify API endpoint to retrieve related artists of searched artist on home page.
 app.get('/api/relatedArtists/:artistID', async (req, res) => {
     try {
         const artistID = req.params.artistID;
@@ -82,37 +114,6 @@ app.get('/api/tracks/:albumID', async (req, res) => {
         return res.status(500).send('Server failed to fetch artist album tracks.');
     };
 });
-
-app.get('/api/search', async (req, res) => {
-    try {
-        // Validate query param.
-        const searchValue = req.query.searchValue;
-        if (searchValue === null || searchValue === undefined) {
-            return res.status(400).send('searchValue is a required query.')
-        } else if (typeof searchValue !== 'string') {
-            return res.status(400).send('searchValue query must be a string.')
-        } else if (searchValue === '') {
-            return res.status(400).send('searchValue query must not be empty.')
-        }
-
-        // Make API request to Spotify.
-        const url = `https://api.spotify.com/v1/search?q=artist:${searchValue}&type=artist`;
-        const response = await fetch(url, { 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-            }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message;
-            return res.status(400).send(error)
-        }
-        return res.status(200).json(results.artists.items);
-    } catch(err) {
-        return res.status(500).send('Server failed to search for artists.');
-    }
-}) 
 
 // Start the server listening for requests.
 app.listen(process.env.PORT, () => {
