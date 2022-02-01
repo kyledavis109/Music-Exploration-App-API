@@ -23,10 +23,10 @@ app.get('/api/search', async (req, res) => {
 
         // Make API request to Spotify.
         const url = `https://api.spotify.com/v1/search?q=artist:${searchValue}&type=artist`;
-        const results = await makeReq(url, 'GET')
+        const results = await makeReq(url, 'GET');
         return res.status(200).json(results.artists.items);
     } catch(err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).send('Server failed to search for artists.');
     };
 });
@@ -36,10 +36,10 @@ app.get('/api/relatedArtists/:artistID', async (req, res) => {
     try {
         const artistID = req.params.artistID;
         const url = `https://api.spotify.com/v1/artists/${artistID}/related-artists`;
-        const results = await makeReq(url, 'GET')
+        const results = await makeReq(url, 'GET');
         return res.status(200).json(results);
     } catch(err) {
-        console.log(err)
+        console.log(err);
         return res.status(500).send('Server failed to fetch related related artists data.');
     };
 });
@@ -49,10 +49,10 @@ app.get('/api/albums/:artistID', async (req, res) => {
     try {
         const artistID = req.params.artistID;
         if (artistID === undefined || !artistID) {
-            return res.status(400).send('Missing required parameter "artistID"')
+            return res.status(400).send('Missing required parameter "artistID"');
         };
         const url = `https://api.spotify.com/v1/artists/${artistID}/albums`;
-        const results = await makeReq(url, 'GET')
+        const results = await makeReq(url, 'GET');
 
         // Filter out duplicates in API fetch results.
         const albumNames = [];
@@ -73,7 +73,7 @@ app.get('/api/tracks/:albumID', async (req, res) => {
     try {
         const albumID = req.params.albumID;
         const url = `https://api.spotify.com/v1/albums/${albumID}/tracks`;
-        const results = await makeReq(url, 'GET')
+        const results = await makeReq(url, 'GET');
         return res.status(200).json(results);
     } catch(err) {
         return res.status(500).send('Server failed to fetch artist album tracks.');
@@ -84,6 +84,6 @@ app.get('/api/tracks/:albumID', async (req, res) => {
 app.listen(process.env.PORT, async () => {
     const client_id = process.env.CLIENT_ID;
     const client_secret = process.env.CLIENT_SECRET;
-    await initToken(client_id, client_secret)
+    await initToken(client_id, client_secret);
     console.log('Server is running...');
 });
