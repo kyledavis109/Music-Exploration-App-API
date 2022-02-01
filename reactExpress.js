@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
+const { initToken, makeReq } = require('./helpers.js')
 require('dotenv').config();
-const fetch = require('node-fetch');
 
+app.use(cors())
+app.use(express.json())
 
 // API fetch call to Spotify API endpoint to retrieve searched artist on home page.
 app.get('/api/search', async (req, res) => {
@@ -21,19 +23,10 @@ app.get('/api/search', async (req, res) => {
 
         // Make API request to Spotify.
         const url = `https://api.spotify.com/v1/search?q=artist:${searchValue}&type=artist`;
-        const response = await fetch(url, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-            }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message;
-            return res.status(400).send(error);
-        };
+        const results = await makeReq(url, 'GET')
         return res.status(200).json(results.artists.items);
     } catch(err) {
+        console.log(err)
         return res.status(500).send('Server failed to search for artists.');
     };
 });
@@ -43,19 +36,10 @@ app.get('/api/relatedArtists/:artistID', async (req, res) => {
     try {
         const artistID = req.params.artistID;
         const url = `https://api.spotify.com/v1/artists/${artistID}/related-artists`;
-        const response = await fetch(url, { 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-            }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message;
-            return res.status(400).send(error);
-        };
+        const results = await makeReq(url, 'GET')
         return res.status(200).json(results);
     } catch(err) {
+        console.log(err)
         return res.status(500).send('Server failed to fetch related related artists data.');
     };
 });
@@ -68,17 +52,8 @@ app.get('/api/albums/:artistID', async (req, res) => {
             return res.status(400).send('Missing required parameter "artistID"')
         };
         const url = `https://api.spotify.com/v1/artists/${artistID}/albums`;
-        const response = await fetch(url, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-            }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message;
-            return res.status(400).send(error);
-        };
+        const results = await makeReq(url, 'GET')
+
         // Filter out duplicates in API fetch results.
         const albumNames = [];
         const albums = results.items.filter((item) => {
@@ -98,17 +73,7 @@ app.get('/api/tracks/:albumID', async (req, res) => {
     try {
         const albumID = req.params.albumID;
         const url = `https://api.spotify.com/v1/albums/${albumID}/tracks`;
-        const response = await fetch(url, { 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
-            }
-        });
-        const results = await response.json();
-        if ('error' in results) {
-            const error = results.error.message;
-            return res.status(400).send(error);
-        }
+        const results = await makeReq(url, 'GET')
         return res.status(200).json(results);
     } catch(err) {
         return res.status(500).send('Server failed to fetch artist album tracks.');
@@ -116,6 +81,9 @@ app.get('/api/tracks/:albumID', async (req, res) => {
 });
 
 // Start the server listening for requests.
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
+    const client_id = process.env.CLIENT_ID;
+    const client_secret = process.env.CLIENT_SECRET;
+    await initToken(client_id, client_secret)
     console.log('Server is running...');
 });
