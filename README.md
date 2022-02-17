@@ -14,6 +14,7 @@ You will need a few npm packages installed to run this app. Open your command te
 1. PORT=
 2. CLIENT_ID=
 3. CLIENT_SECRET=
+
 Use whatever port you want to use to run this application (ex. 3000). You will now need to setup a Spotify Developer account to obtain a Client ID and a Client Secret. A guide and documentation is available at https://developer.spotify.com/documentation/web-api/quick-start/ to show you the necessary steps to setup a Sotify Developer account to communicate with the Spotify API. Provide the port as your redirect URI (ex. http://localhost:3000/callback). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified .env variables (this information is sensitive do not share it with anyone.) Now you need to run the command npm i express to install express (https://www.npmjs.com/package/express). Next, run the command npm i cors to install cors (https://www.npmjs.com/package/cors). Now run the command npm i path to install path (https://www.npmjs.com/package/path). Next, run the command npm i node-fetch to install node-fetch (https://www.npmjs.com/package/node-fetch). Finally, run the command npm i nodemon to install nodemon (https://www.npmjs.com/package/nodemon). These are all the npm packages you will need to run this server. To start the server, run the command `nodemon reactExpressRoutes` to spin up the server. You are now ready to run the front end of the application!
 
 ### Support
