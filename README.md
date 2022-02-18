@@ -32,7 +32,7 @@ CLIENT_SECRET=
 
 9. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
 
-***Congratulations! you've completed installation!***
+***Congratulations! You've completed installation!***
 
 #### To Start API
  To start the API, run the command `nodemon reactExpressRoutes` to spin up the API. You are now ready to run the frontend of the application!
