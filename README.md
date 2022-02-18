@@ -1,10 +1,10 @@
 # Kyle's React Spotify App API
 
-##  About
+## About
 
-This is the API needed to run the music app from my GitHub repository at the address [Frontend repository](https://github.com/kyledavis109/React-Music-Project). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
+This is the API needed to run the music app from my GitHub repository at the address [frontend repository](https://github.com/kyledavis109/React-Music-Project). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
 
-### Getting Started
+### Installation
 
 1. To get started you will need to install Node.js on your computer (https://nodejs.org/en/download/).
 
@@ -16,7 +16,7 @@ This is the API needed to run the music app from my GitHub repository at the add
 
 5. You will need a few npm packages installed to run this app. To install the packages, in the terminal navigate to the root folder of the repository and then run `npm i`.
 
-6. A `.env` file to store enviornmental variables for the API is required. These variables will be sensitive information so it's best to not share them with anyone. Create a `.env` file in the root directory of this file and store the environmental variables as follows:
+6. A `.env` file to store environmental variables for the API is required. These variables will be sensitive information so it's best to not share them with anyone. Create a `.env` file in the root directory of this file and store the environmental variables as follows:
 
  ```
 PORT=
@@ -28,9 +28,11 @@ CLIENT_SECRET=
 
 7. You will now need to setup a Spotify Developer account to obtain a `CLIENT_ID` and a `CLIENT_SECRET` to communicate with the Spotify API. A guide and documentation is available at [Spotify Developer Docs](https://developer.spotify.com/documentation/web-api/quick-start/).
 
-8. Using the PORT number that you have selected, add your redirect URI (ex. `http://localhost:PORT/callback`). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified .env variables (this information is sensitive do not share it with anyone).
+8. Using the PORT number that you have selected, add your redirect URI (ex. `http://localhost:PORT/callback`). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified `.env` variables (***This information is sensitive! Do not share it with anyone!***).
 
 9. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
+
+***Congratulations! you've completed installation!***
 
 #### To Start API
  To start the API, run the command `nodemon reactExpressRoutes` to spin up the API. You are now ready to run the frontend of the application!
