@@ -3,7 +3,7 @@
 ## About
 
 This is the API needed to run the music app from my GitHub repository at the address [frontend repository](https://github.com/kyledavis109/React-Music-Project). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
-
+s
 ### Installation
 
 1. To get started you will need to install Node.js on your computer (https://nodejs.org/en/download/).
