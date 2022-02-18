@@ -10,13 +10,13 @@ This is the API needed to run the music app from my GitHub repository at the add
 
 2. Next you will need to install Git to pull the code from my repository (https://git-scm.com/downloads).
 
-3. You will also need to have a GitHub account as well as a SSH Key [SSH Key Tutorial.](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+3. You will also need to have a GitHub account as well as a SSH Key [SSH Key Tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 4. Once you have installed everything and are setup, you are ready to clone the repository. To clone the repository, open up a terminal and run `git clone https://github.com/kyledavis109/React-Express.git` to clone the repository into a folder on your computer.
 
-5. You will need a few npm packages installed to run this app. To install the packages, in the terminal navigate to the root folder of the repository and then run `npm i `.
+5. You will need a few npm packages installed to run this app. To install the packages, in the terminal navigate to the root folder of the repository and then run `npm i`.
 
-6. A `.env` file to store enviornmental variables for the API. These variables will be sensitive information so it's best to not share them with anyone. Create a `.env` file in the root directory of this file and store the environmental variables as follows:
+6. A `.env` file to store enviornmental variables for the API is required. These variables will be sensitive information so it's best to not share them with anyone. Create a `.env` file in the root directory of this file and store the environmental variables as follows:
 
  ```
 PORT=
@@ -24,7 +24,7 @@ CLIENT_ID=
 CLIENT_SECRET=
 ```
 
-6. Pick a PORT number and assign it to `PORT=` environmental variable.
+6. Pick a PORT number and assign it to `PORT=` as an environmental variable.
 
 7. You will now need to setup a Spotify Developer account to obtain a `CLIENT_ID` and a `CLIENT_SECRET` to communicate with the Spotify API. A guide and documentation is available at [Spotify Developer Docs](https://developer.spotify.com/documentation/web-api/quick-start/).
 
@@ -33,7 +33,7 @@ CLIENT_SECRET=
 9. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
 
 #### To Start API
- To start the API, run the command `nodemon reactExpressRoutes` to spin up the server. You are now ready to run the frontend of the application!
+ To start the API, run the command `nodemon reactExpressRoutes` to spin up the API. You are now ready to run the frontend of the application!
 
 ### Support
 
