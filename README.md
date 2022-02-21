@@ -2,7 +2,7 @@
 
 ## About
 
-This is the API needed to run the frontend music app from my GitHub repository located [here](https://github.com/kyledavis109/Kyles-React-Spotify-App). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
+This is the API needed to run the frontend music app from my repository located [here](https://github.com/kyledavis109/Kyles-React-Spotify-App). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
 s
 ### Installation
 
