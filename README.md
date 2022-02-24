@@ -1,8 +1,8 @@
-# Kyle's React Spotify App API
+# Music Exploration App API
 
 ## About
 
-This is the API needed to run the frontend music app from my repository located [here](https://github.com/kyledavis109/Kyles-React-Spotify-App). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
+This is the API needed to run the frontend music app from my repository located [here](https://github.com/kyledavis109/Music-Exploration-App). Documentation is available there for getting setup and running the frontend of the app. You must have this API up and running before you can launch the frontend of the app.
 s
 ### Installation
 
@@ -12,7 +12,7 @@ s
 
 3. You will also need to have a GitHub account as well as a SSH Key. [SSH Key Tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
-4. Once you have installed everything and are setup, you are ready to clone the repository. To clone the repository, open up a terminal and run `git clone https://github.com/kyledavis109/Spotify-App-Express` to clone the repository into a folder on your computer.
+4. Once you have installed everything and are setup, you are ready to clone the repository. To clone the repository, open up a terminal and run `git clone https://github.com/kyledavis109/Music-Exploration-App-API` to clone the repository into a folder on your computer.
 
 5. You will need a few npm packages installed to run this app. To install the packages, in the terminal navigate to the root folder of the repository and then run `npm i`.
 
