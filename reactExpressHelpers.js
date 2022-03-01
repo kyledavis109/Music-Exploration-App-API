@@ -22,8 +22,8 @@ async function getToken(clientID, clientSecret) {
         const results = await response.json();
         return results.access_token;
     } catch(err) {
-    console.log(err)
-    throw 'Failed to get access token.';
+        console.log(err)
+        throw 'Failed to get access token.';
     };
 };
 
@@ -38,22 +38,23 @@ async function makeReq(url, method) {
     });
 
     // Checks if access token expired. If so, gets a new access token and retrys.
+    // So we can refresh the access token.
     if (response.status === 401) {
-    access_token = await getToken(client_id, client_secret);
-    const response = await fetch(url, {
-        method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${access_token}`
-        }
-    });
+        access_token = await getToken(client_id, client_secret);
+        const response = await fetch(url, {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+            }
+        });
 
-    if (response.status !== 200) {
-        throw response;
-    };
-    return await response.json();
+        if (response.status !== 200) {
+            throw response;
+        };
+        return await response.json();
     } else if (response.status !== 200) {
-    throw response;
+        throw response;
     };
 
     return await response.json();
