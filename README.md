@@ -24,13 +24,13 @@ CLIENT_ID=
 CLIENT_SECRET=
 ```
 
-6. Pick a PORT number and assign it to `PORT=` as an environmental variable.
+7. Pick a PORT number and assign it to `PORT=` as an environmental variable.
 
-7. You will now need to setup a Spotify Developer account to obtain a `CLIENT_ID` and a `CLIENT_SECRET` to communicate with the Spotify API. A guide and documentation is available at [Spotify Developer Docs](https://developer.spotify.com/documentation/web-api/quick-start/).
+8. You will now need to setup a Spotify Developer account to obtain a `CLIENT_ID` and a `CLIENT_SECRET` to communicate with the Spotify API. A guide and documentation is available at [Spotify Developer Docs](https://developer.spotify.com/documentation/web-api/quick-start/).
 
-8. Using the PORT number that you have selected, add your redirect URI (ex. `http://localhost:PORT/callback`). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified `.env` variables (***This information is sensitive! Do not share it with anyone!***).
+9. Using the PORT number that you have selected, add your redirect URI (ex. `http://localhost:PORT/callback`). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified `.env` variables (***This information is sensitive! Do not share it with anyone!***).
 
-9. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
+10. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
 
 ***Congratulations! You've completed installation!***
 
