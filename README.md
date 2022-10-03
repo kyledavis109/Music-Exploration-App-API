@@ -30,8 +30,6 @@ CLIENT_SECRET=
 
 9. Using the PORT number that you have selected, add your redirect URI (ex. `http://localhost:PORT/callback`). Once you have created an app in the Spotify Developer Dashboard you can obtain your Client ID and Client Secret from the app. Store your Client ID and Client Secret in the specified `.env` variables (***This information is sensitive! Do not share it with anyone!***).
 
-10. Now you need to install the needed npm packages. To do so, first navigate to the root folder of this repository and then run `npm i`.
-
 ***Congratulations! You've completed installation!***
 
 #### To Start API
